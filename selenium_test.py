@@ -4,8 +4,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
 from time import sleep
-import cred.py
+from cred import user, password
 
+print(f"{user}, {password}")
 
 
 
