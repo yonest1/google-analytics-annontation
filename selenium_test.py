@@ -4,30 +4,11 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
 from time import sleep
-from cred import user, password
-
-print(f"{user}, {password}")
+from cred import theuser, thepassword
 
 
-
-'''
 #chrome_options = Options()
 #chrome_options.add_argument("--headless")
-# products = [
-#     "https://analytics.google.com/analytics/web/provision/#/report/visitors-overview/a178931540w247408450p229643797/",
-# ]
-#driver = webdriver.Chrome(options=chrome_options)
-
-# driver = webdriver.Chrome()
-# for url in products:
-#     print("start")
-#     driver.get(url)
-#     print(url)
-#     print(driver.find_element_by_xpath('//*[@id="productTitle"]').text)
-#     #print(driver.find_element_by_xpath('//*[@id="priceblock_ourprice"]').text)
-#     #print(driver.find_element_by_xpath('//*[@id="productDetails_detailBullets_sections1"]').text)
-#     print("----------------------------\n")
-# driver.close()
 
 class Google:
 
@@ -35,29 +16,34 @@ class Google:
 
         self.driver = webdriver.Chrome()
         self.driver.get('https://stackoverflow.com/users/signup?ssrc=head&returnurl=%2fusers%2fstory%2fcurrent%27')
-        sleep(3)
+        sleep(5)
         self.driver.find_element_by_xpath('//*[@id="openid-buttons"]/button[1]').click()
         self.driver.find_element_by_xpath('//input[@type="email"]').send_keys(username)
         self.driver.find_element_by_xpath('//*[@id="identifierNext"]').click()
-        sleep(3)
+        sleep(5)
         self.driver.find_element_by_xpath('//input[@type="password"]').send_keys(password)
         self.driver.find_element_by_xpath('//*[@id="passwordNext"]').click()
-        sleep(2)
-        self.driver.get('https://analytics.google.com/analytics/web/provision/#/report/visitors-overview/a178931540w247408450p229643797/')
+        sleep(4)
+        self.driver.get('https://analytics.google.com/analytics/web/#/report-home/a146806591w208716095p201158238')
+        sleep(8)
+        self.driver.find_element_by_xpath(
+            '//*[@id="reporting"]/div/div/div/ga-nav-link[3]/div/a/div/span/span').click()
+        sleep(4)
+        self.driver.find_element_by_xpath('//*[@id="reporting"]/div/div/div/ga-nav-link[3]/div[2]/div/div/ga-nav-link[2]/div/a/div/span/span').click()
+        sleep(4)
+        self.driver.find_element_by_xpath(
+            '//*[@id="reporting"]/div/div/div/ga-nav-link[3]/div[2]/div/div/ga-nav-link[2]/div[2]/div/div/ga-nav-link[1]/div/report-link/a/div/span/span').click()
         sleep(5)
-        self.driver.find_element_by_xpath('//*[@id="reporting"]/div/div/div/ga-nav-link[2]/div[1]/a/div/span/span').click()
+        self.driver.switch_to_frame('galaxyIframe')
         sleep(5)
-        self.driver.find_element_by_id('AnnotationDrawer').click()
+        self.driver.find_element_by_id('AnnotationDrawer_drawer_button').click()
         # self.driver.find_element_by_xpath('//*[@id="AnnotationDrawer_drawer_button"]').click()
-        sleep(2)
-        self.driver.find_element_by_xpath('<a href="#" onclick="return false;" class="_GALN _GAAu">+&nbsp;צור הערה חדשה</a>').click()
-        sleep(2)
-        self.driver.find_element_by_xpath(
-            '//*[@id="AFB3siagZNXnPzPSEnBX46Q78DgwZFqbPGbrPhKxROBGs13evevzFTgbt-wfygR9wiWLsrTxhO7n:1600948746987"]/td/form/table/tbody/tr/td[3]/textarea').send_keys("hello world")
-        sleep(2)
-        self.driver.find_element_by_xpath(
-            '//*[@id="AFB3siagZNXnPzPSEnBX46Q78DgwZFqbPGbrPhKxROBGs13evevzFTgbt-wfygR9wiWLsrTxhO7n:1600948746987"]/td/form/table/tbody/tr/td[7]/a/b/b/b').click()
+        sleep(5)
+        self.driver.find_element_by_class_name('_GALN').click()
+        sleep(4)
+        self.driver.find_element_by_css_selector("._GANrb textarea").send_keys("hello world")
+        sleep(4)
+        self.driver.find_element_by_css_selector("._GAjb._GAWn b").click()
         #self.driver.close()
 
-Google(username, password)
-'''
+Google(theuser, thepassword)
